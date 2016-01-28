@@ -34,6 +34,15 @@ class SuperHeroesViewControllerTests: AcceptanceTestCase {
         tester().waitForAbsenceOfViewWithAccessibilityLabel("¯\\_(ツ)_/¯")
     }
 
+    func testShowsOneSuperHeroeIfThereIsOneSuperHeroe() {
+        givenThereAreSomeSuperHeroes(1)
+
+        openSuperHeroesViewController()
+
+        let superHeroesTableView = tester().waitForViewWithAccessibilityLabel("SuperHeroesTableView") as! UITableView
+        expect(superHeroesTableView.numberOfRowsInSection(0)).to(equal(1))
+    }
+
     private func givenThereAreNoSuperHeroes() {
         givenThereAreSomeSuperHeroes(0)
     }
